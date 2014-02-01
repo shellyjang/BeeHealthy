@@ -236,11 +236,11 @@ function renderHoverText(data_alpha, data_votes, data_out, ind) {
 		star1 = 'much worse: ' +star1.toString();
 	
 		html = ''
-		html += '<h4 style="text-align: left;">' +star5+ '%</h4>'
-		html += '<h4 style="text-align: left;">' +star4+ '%</h4>'
-		html += '<h4 style="text-align: left;">' +star3+ '%</h4>'
-		html += '<h4 style="text-align: left;">' +star2+ '%</h4>'
-		html += '<h4 style="text-align: left;">' +star1+ '%</h4>'
+		html += '<h5 style="text-align: left;">' +star5+ '%</h5>'
+		html += '<h5 style="text-align: left;">' +star4+ '%</h5>'
+		html += '<h5 style="text-align: left;">' +star3+ '%</h5>'
+		html += '<h5 style="text-align: left;">' +star2+ '%</h5>'
+		html += '<h5 style="text-align: left;">' +star1+ '%</h5>'
 
 		// console.log(html)
 		// console.log(html)

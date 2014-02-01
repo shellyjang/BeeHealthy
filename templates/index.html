@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style type="text/css">
+
+.buttonshelly {
+  margin-left: auto%;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 40px; 
+}
+
+#tagline {
+	font-family: 'Love Ya Like A Sister', cursive;
+	color: white;
+}
+#jumbo-front{
+	background-color: transparent;
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 40px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+						color: black;
+}
+
+.box_textshadow {
+     text-shadow: 20px 20px 0px #FF0000; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+}
+
+</style>
+<body style="background-image:url('static/img/honeycomb-highres.png');
+						-webkit-background-size: cover;
+						-moz-background-size: cover;
+						-o-background-size: cover;
+						background-size: cover;
+						">
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<div id="jumbo-front" class="jumbotron">
+				<div>
+				  <h1 id="tagline" class="box_textshaow" style="color:white;">Join the hive and Get Healthy!</h1>
+					
+				</div>
+				<br>
+			  <p>
+					<form action="search.html" method="get">    
+						
+						<div class='example-countries'>
+	              <span class="twitter-typeahead" style="position: relative; display: inline-block; ">
+	                  <input class="typeahead tt-query" type="text" placeholder="What's bugging you?" autocomplete="off" spellcheck="false" style="position: relative; vertical-align: top; background-color: rgba(218, 165, 32, 0.6); " dir="auto" name='title' id='condition'>
+	              </span>
+	          </div>
+						
+						<!-- <div class="input-group">
+						  <span class="input-group-addon">V</span>
+						  <input type="number" class="form-control" id="numVotes" placeholder="Importance of Votes [0-1]">
+						</div>
+						
+						<div class="input-group">
+						  <span class="input-group-addon">alpha</span>
+						  <input type="number" class="form-control" id="ranked" placeholder="Conventional? or no?">
+						</div> -->
+						
+	            <script>
+	                $('.example-countries .typeahead').typeahead({
+	                  name: 'countries',
+	                  prefetch: 'static/data/conditions.json',
+	                  limit: 10
+	                });
+	            </script>
+							
+							<!-- <button type="button" id="holder" href="">Search </button> -->
+							<div class="container">
+
+			 	     <div class='btn-xlarge buttonshelly' style="text-align:center;">
+			 	          <button type="button" style="text-align:center; font-size:30px; color: white;" class="btn btn-warning buttonshelly" id="holder" >Show me some treatments</button>			 	        
+							</div>
+						</div>
+						</div>
+					</form>
+				</p>
+			</div>
+		</div>
+<script>
+$(document).ready(function(){
+	$('#holder').click(function() {
+		var condition = $('#condition').val()
+		var numVotes = $('#numVotes').val()
+		var ranked = $('#ranked').val()
+		console.log(numVotes)			
+		// window.location.href  = 'search?condition=' + condition 
+		// window.location.href  = 'search?condition=' + condition + '&numVotes=' + numVotes + '&ranked=' + ranked
+		window.location.href  = 'search_scaffold?condition=' + condition
+	})
+	
+})
+document.getElementById("id_of_your_textbox").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    e.preventDefault(); // sometimes useful
+
+    // Enter is pressed
+    if (e.keyCode == 13) { submitFunction(); }
+}, false);
+// document.getElementById("id_of_your_textbox").addEventListener("keydown", function(e) {
+//     if (!e) { var e = window.event; }
+//     e.preventDefault(); // sometimes useful
+// 
+//     // Enter is pressed
+//     if (e.keyCode == 13) { submitFunction(); }
+// }, false);
+</script>	
+</body>
+{% endblock %}

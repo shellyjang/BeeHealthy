@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+			
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+			
+			#slider_votes,
+			#slider_alpha {
+				width: 150px;
+			}
+    </style>
+		<!-- <link href="static/css/slider.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+		
+		<!-- // <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+		<script src="static/js/jquery.min.js"></script>
+		<script src='http://twitter.github.com/typeahead.js/releases/latest/typeahead.js'></script>
+		<!-- // <script src="static/js/typeahead.min.js"></script> -->
+		<link rel='stylesheet' href='http://twitter.github.com/typeahead.js/releases/latest/typeahead.css' />
+		<script src="static/js/bootstrap-slider.js"></script> 
+		
+		
+		<link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="static/css/slider.css" rel="stylesheet">		
+		
+		<!-- // <script src="static/js/jquery.min.js"></script> -->
+		
+		<script>
+		// This is the function that intializes the ...
+		$(document).ready(function(){
+			  console.log( "ready!" );
+				var alpha = 10.0;
+				var votes = 530;
+			  recompute(0, alpha, votes);
+				// insertParameters('', '', [{"treatment":'None'}], 0)									
+		});
+		</script>
+		<link href="static/css/jang.css" rel="stylesheet">
+
+  </head>
+
+  <body style="background-image:url('static/img/honeycomb-highres-opacity2.jpg');
+						-webkit-background-size: cover;
+						-moz-background-size: cover;
+						-o-background-size: cover;
+						background-size: cover;">	
+
+				    <div class="navbar navbar-inverse navbar-fixed-top">
+				      <div class="navbar-inner">
+				        <div class="container-fluid">
+				          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				            <span class="icon-bar"></span>
+				          </button>
+				          <a class="brand" href="/" style="font-family: 'Oleo Script Swash Caps', cursive; font-size:40px;">BeeHealthy</a>
+				          <div class="nav-collapse collapse">
+				            <p class="navbar-text pull-right">
+				             	<a href="slides" class="navbar-link">Slides</a>
+				            </p>
+				            <ul class="nav">
+				              <li class="active"><a href="#">Home</a></li>
+				              <li><a href="#about">About</a></li>
+				              <li><a href="#contact">Contact</a></li>
+				            </ul>
+				          </div><!--/.nav-collapse -->
+				        </div>
+				      </div>
+				    </div>
+    
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+							<div class="sliderbox">
+								<p>
+									<div class ="label" id="slider_description" style="color:white;">Benchmark Threshold</div>
+									<input class="slider slider-horizontal slider-custom" id="slider_votes" data-slider-tooltip="hide" value=10 data-slider-value=10>
+								</p>
+								<p>
+									<div class ="label" id="slider_description" style="color:white;">Popularity</div>
+									<input class="slider slider-horizontal" id="slider_alpha" data-slider-tooltip="hide" value=10 data-slider-value=10>
+								</p>
+							</div>
+            </ul>
+          </div><!--/.well -->
+					
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+							<div class="sliderbox">
+								
+							</div>
+            </ul>
+          </div><!--/.well -->
+					
+        </div><!--/span-->
+				
+        <div class="span9">					
+					
+						<div class="container container-hex text-center">		
+							
+							<!-- First Row of the honeycomb, the middle element shows  -->
+							<!-- transparent place holder -->
+							<div class="hex hex-gap hex-transparent">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+							</div>
+							
+							<!-- place holder, top of the triangle  -->
+							<div class="hex" style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+									<h4>...</h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>	
+								
+							</div>
+							
+							<!-- transparent place holder -->
+							<div class="hex hex-transparent">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>
+				
+							</div>
+								
+							<!-- Second Row of the honeycomb, the middle two of the four actually shows up -->
+							<!-- transparent place holder on the left -->
+							<div class="hex hex-transparent">
+
+								<div class="inner">
+									<h4></h4>				
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+							</div>
+						
+							<!-- The first treatment  -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">	
+								<div class="inner">
+									<h4 class="Lato" id="firstTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#firstTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>	
+				
+								<!-- Modal --></div>
+							
+							<!-- The second treatment -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">
+
+								<div class="inner">
+									<h4 class="Lato" id="secondTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#secondTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<a></a>		
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+								
+								<!-- Modal -->
+								<div class="modal fade" id="secondTarget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								        <h4 class="modal-title" id="myModalLabel">Reported Treatment Effectiveness</h4>
+								      </div>
+								      <div class="modal-body">
+												<p id="secondModalText">
+												</p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								        <!-- <a href="http://www.google.com" class="btn btn-primary">Save changes</a> -->
+			
+								      </div>
+								    </div><!-- /.modal-content -->
+								  </div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+							</div>
+							
+							<!-- transparent place holder on the right -->
+							<div class="hex hex-transparent">
+
+								<div class="inner">
+									<h4></h4>				
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+							</div>
+							
+							<!-- Third Row of the honeycomb, -->
+							<div class="hex hex-gap" style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+							</div>
+			
+							<!-- The third treatment -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">
+
+								<div class="inner">
+									<h4 class="Lato" id="thirdTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#thirdTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+								
+								<div class="modal fade" id="thirdTarget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								        <h4 class="modal-title" id="myModalLabel">Reported Treatment Effectiveness</h4>
+								      </div>
+								      <div class="modal-body">
+												<p id="thirdModalText">
+												</p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>			
+								      </div>
+								    </div><!-- /.modal-content -->
+								  </div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+							</div>
+			
+							<div class="hex " style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+										<h4>
+											<li>link</li>
+										</h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>
+				
+							</div>
+												
+						</div>	
+          
+					
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+		<script src="static/js/shelly.js"></script>
+		
+		<script>
+		$( "li" ).hover(
+		  function() {
+		    $( this ).append( $( "<span> ***</span>" ) );
+		  }, function() {
+		    $( this ).find( "span:last" ).remove();
+		  }
+		);
+ 
+		$( "li.fade" ).hover(function() {
+		  $( '#rightbottom' ).fadeOut( 100 );
+		  $( '#rightbottom' ).fadeIn( 500 );
+		});
+		
+		
+		function recompute(ev, alpha, votes) {
+			if (ev)
+			{ 
+				//do something cool
+			};
+			var cond = "{{ cond }}";
+			// var cond = 'Migraine';
+			// console.log(cond);
+		  $.getJSON('/search_get',{ alpha:alpha, votes:votes, cond:cond }, function(jsresult) {
+				result = eval(jsresult);
+				// console.log(typeof result);  
+				var LIST = [0, 1, 2]	
+				for(var i = 0; i < LIST.length; i++) {
+					LIST[i] = result.out[i];
+				};
+				insertParameters(result.alpha, result.votes, LIST);		
+				});
+		};
+		</script>
+		
+		<!-- // <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+		<script src="static/js/bootstrap.min.js"></script>
+		
+		
+		
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<!-- //     <script src="static/js/components/jquery.js"></script>
+		//     <script src="static/js/components/bootstrap-transition.js"></script>
+		//     <script src="static/js/components/bootstrap-alert.js"></script>
+		//  	  <script src="static/js/components/bootstrap-modal.js"></script>
+		// <script src="static/js/components/bootstrap-dropdown.js"></script>
+		//     <script src="static/js/components/bootstrap-scrollspy.js"></script>
+		//     <script src="static/js/components/bootstrap-tab.js"></script>
+		//     <script src="static/js/components/bootstrap-tooltip.js"></script>
+		//     <script src="static/js/components/bootstrap-popover.js"></script>
+		//     <script src="static/js/components/bootstrap-button.js"></script>
+		//     <script src="static/js/components/bootstrap-collapse.js"></script>
+		//     <script src="static/js/components/bootstrap-carousel.js"></script>
+		//     <script src="static/js/components/bootstrap-typeahead.js"></script> -->
+
+  </body>
+</html>

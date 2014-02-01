@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BeeHealthy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<link rel="shortcut icon" href="static/img/bee_transparent.ico">
+    <!-- Le styles -->
+    <link href="static/css/bootstrap_232unaltered.min.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+			
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+		<!-- <link href="static/css/slider.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+		
+		<!-- // <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+		<script src="static/js/jquery.min.js"></script>
+		<script src='http://twitter.github.com/typeahead.js/releases/latest/typeahead.js'></script>
+		<!-- // <script src="static/js/typeahead.min.js"></script> -->
+		<link rel='stylesheet' href='http://twitter.github.com/typeahead.js/releases/latest/typeahead.css' />
+		<script src="static/js/bootstrap-slider.js"></script> 
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		
+		<link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="static/css/slider.css" rel="stylesheet">		
+		
+		<!-- // <script src="static/js/jquery.min.js"></script> -->
+		
+		<script>
+		// This is the function that intializes the ...
+		$(document).ready(function(){
+			  console.log( "ready!" );
+				var alpha = 10.0;
+				var votes = 530;
+			  recompute(0, alpha, votes);
+				// insertParameters('', '', [{"treatment":'None'}], 0)									
+		});
+		</script>
+		<link href="static/css/jang.css" rel="stylesheet">
+
+  </head>
+
+  <body style="background-image:url('static/img/honeycomb-highres-opacity2.jpg');
+						-webkit-background-size: cover;
+						-moz-background-size: cover;
+						-o-background-size: cover;
+						background-size: cover;">	
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/" id="brand">BeeHealthy</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <a href="slides" class="navbar-link">Slides</a>
+            </p>
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="http://www.shellyjang.com" target="_blank" class="navbar-link">Shelly</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Adjust Me</li>
+              
+							<div class="sliderbox">
+								<p>
+									<div class ="label" id="slider_description" style="color:white;">Benchmark Threshold</div>
+									<input class="slider slider-horizontal" id="slider_votes" data-slider-tooltip="hide" value=10 data-slider-value=10>
+								</p>
+								<p>
+									<div class ="label" id="slider_description" style="color:white;">Popularity</div>
+									<input class="slider slider-horizontal" id="slider_alpha" data-slider-tooltip="hide" value=10 data-slider-value=10>
+								</p>
+							</div>
+            </ul>
+						
+          </div><!--/.well -->
+					
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Treatment Rating</li>
+							
+							<p><h5>Major Improvement:</h5></p>
+							<p id="perc_1"></p> 
+							<p><h5>Moderate Improvement:</h5></p>
+							<p id="perc_2"></p> 
+							<p><h5>No Effect:</h5></p>
+							<p id="perc_3"></p> 
+							<p><h5>Slightly Worse:</h5></p>
+							<p id="perc_4"></p> 
+							<p><h5>Much Worse:</h5></p>
+							<p id="perc_5"></p>
+							<p id="treatment_desc"></p> 
+							
+            </ul>
+          </div><!--/.well -->
+					
+        </div><!--/span-->
+				
+        <div class="span9">					
+					
+						<div class="container container-hex text-center">		
+							
+							<!-- First Row of the honeycomb, the middle element shows  -->
+							<!-- transparent place holder -->
+							<div class="hex hex-gap hex-transparent">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+							</div>
+							
+							<!-- place holder, top of the triangle  -->
+							<div class="hex" style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+									<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>	
+								
+							</div>
+							
+							<!-- transparent place holder -->
+							<div class="hex hex-transparent">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>
+				
+							</div>
+								
+							<!-- Second Row of the honeycomb, the middle two of the four actually shows up -->
+							<!-- transparent place holder on the left -->
+							<div class="hex hex-transparent">
+
+								<div class="inner">
+									<h4></h4>				
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+							</div>
+						
+							<!-- The first treatment  -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">	
+								<div class="inner">
+									<h4 class="Lato" id="firstTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#firstTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>	
+				
+								</div>
+							
+							<!-- The second treatment -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">
+
+								<div class="inner">
+									<h4 class="Lato" id="secondTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#secondTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<a></a>		
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+								
+							</div>
+							
+							<!-- transparent place holder on the right -->
+							<div class="hex hex-transparent">
+
+								<div class="inner">
+									<h4></h4>				
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+							</div>
+							
+							<!-- Third Row of the honeycomb, -->
+							<div class="hex hex-gap" style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+							</div>
+			
+							<!-- The third treatment -->
+							<div class="hex" style="background-image: url(static/img/hex_teal.png);">
+
+								<div class="inner">
+									<h4 class="Lato" id="thirdTreatment" style="">...</h4>
+									<!-- inserting javascript generated modal ID -->
+					
+									<a id="#" data-target="#thirdTarget" data-toggle="modal">
+										info
+									</a>
+									<br>
+									
+								</div>			
+								<a></a>		
+								<div class="corner-1" style="box-sizing: border-box;"></div>
+								<div class="corner-2"></div>		
+								
+								
+							</div>
+			
+							<div class="hex " style="background-image: url(static/img/beehiveicon.png);">	
+								<div class="inner">
+										<h4></h4>
+								</div>			
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>
+				
+							</div>
+												
+						</div>	
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+		<script src="static/js/shelly.js"></script>
+		
+		<script>
+
+		
+		function insertHoverText(ind) {
+			var alpha = $('#slider_alpha').val();
+			var votes = $('#slider_votes').val();
+			var cond = "{{ cond }}";
+			console.log(cond)
+		  $.getJSON('/search_get',{alpha:alpha, votes:votes, cond:cond }, function(jsresult) {
+				result = eval(jsresult);
+				var LIST = result.out[ind];
+				var out = result.treatment_all;
+			
+				html = renderHoverText(alpha, votes, out, ind);		
+				console.log(html);			
+				// $('#perc_1').html(html)
+			  $('#treatment_desc').html(html)
+			});
+			
+		};
+
+		
+		
+		$('#slider_votes').slider().on('slideStop', function(ev){
+			var alpha = $('#slider_alpha').val()
+			var votes = $('#slider_votes').val()
+			// console.log('javascript: alpha = ' +alpha+ ', votes = ' +votes)
+	
+			recompute(ev, alpha, votes);
+		});	
+		
+		
+		function recompute(ev, alpha, votes) {
+			if (ev)
+			{ 
+				//do something cool
+			};
+			var cond = "{{ cond }}";
+			// var cond = 'Migraine';
+			// console.log(cond);
+		  $.getJSON('/search_get',{ alpha:alpha, votes:votes, cond:cond }, function(jsresult) {
+				result = eval(jsresult);
+				// console.log(typeof result);  
+				var LIST = [0, 1, 2]	
+				for(var i = 0; i < LIST.length; i++) {
+					LIST[i] = result.out[i];
+				};
+				insertParameters(result.alpha, result.votes, LIST);		
+				});
+		};
+		</script>
+		
+		
+		
+		<script>
+		// D3.js script to make a piechart. 
+		var width = 240,
+		    height = 125,
+		    radius = Math.min(width, height) / 2;
+				
+		var color = d3.scale.ordinal()
+		    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+		var arc = d3.svg.arc()
+		    .outerRadius(radius - 10)
+		    .innerRadius(0);
+
+		var pie = d3.layout.pie()
+		    .sort(null)
+		    .value(function(d) { return d.population; });
+
+		var svg = d3.select("").append("svg")
+		    .attr("width", width)
+		    .attr("height", height)
+		  .append("g")
+		    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+		d3.csv("data.csv", function(error, data) {
+
+		  data.forEach(function(d) {
+		    d.population = +d.population;
+		  });
+
+		  var g = svg.selectAll(".arc")
+		      .data(pie(data))
+		    .enter().append("g")
+		      .attr("class", "arc");
+
+		  g.append("path")
+		      .attr("d", arc)
+		      .style("fill", function(d) { return color(d.data.age); });
+
+		  g.append("text")
+		      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		      .attr("dy", ".35em")
+		      .style("text-anchor", "middle")
+		      .text(function(d) { return d.data.age; });
+
+		});
+		</script>
+		
+		
+		<!-- // <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+		<script src="static/js/bootstrap.min.js"></script>
+		
+		
+		
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<!-- //     <script src="static/js/components/jquery.js"></script>
+		//     <script src="static/js/components/bootstrap-transition.js"></script>
+		//     <script src="static/js/components/bootstrap-alert.js"></script>
+		//  	  <script src="static/js/components/bootstrap-modal.js"></script>
+		// <script src="static/js/components/bootstrap-dropdown.js"></script>
+		//     <script src="static/js/components/bootstrap-scrollspy.js"></script>
+		//     <script src="static/js/components/bootstrap-tab.js"></script>
+		//     <script src="static/js/components/bootstrap-tooltip.js"></script>
+		//     <script src="static/js/components/bootstrap-popover.js"></script>
+		//     <script src="static/js/components/bootstrap-button.js"></script>
+		//     <script src="static/js/components/bootstrap-collapse.js"></script>
+		//     <script src="static/js/components/bootstrap-carousel.js"></script>
+		//     <script src="static/js/components/bootstrap-typeahead.js"></script> -->
+
+  </body>
+</html>

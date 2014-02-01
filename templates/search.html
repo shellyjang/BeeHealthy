@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- MODAL POPUP!!!-->
+
+		<script>
+		$("#shelly").modal();
+		$.modal("<div><h1>SimpleModal</h1></div>");
+		</script>
+		
+		
+		<style type="text/css">
+		.hex {
+		    width:150px;
+		    height:86px;
+		    background-color: #ccc;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;            
+		    background-size: auto 173px;                            
+		    position: relative;
+		    float:left;
+		    margin:25px 5px;
+		    text-align:center;
+		    zoom:1;
+		}
+		
+		.slider-well {
+			width:500px;
+			border-radius: 15px;
+			position:relative;
+/*			margin-left: 28%;*/
+			margin-top:7%;
+			padding: 6px;
+		}
+		
+		.container-hex {
+			width:700px; 
+			height:750px; 
+			position:relative; 
+			top: 45px; 
+/*			left:50%; */
+/*			margin: 50%;*/
+		}
+        
+		    .hex.hex-gap {
+		        margin-left: 86px;
+		    }
+    
+		    .hex a {
+		        display:block;
+		        width: 100%;
+		        height:100%;
+		        text-indent:-9999em;
+		        position:absolute;
+		        top:0;
+		        left:0;
+		    }
+		    .hex .corner-1,
+		    .hex .corner-2 {
+		        position: absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+		        background: inherit;                                
+		        z-index:-2;                        
+		        overflow:hidden;        
+		        backface-visibility: hidden;            
+		    }
+    
+		    .hex .corner-1 {
+		        z-index:-1;
+		        -webkit-transform: rotate(60deg);
+		    }
+    
+		    .hex .corner-2 {
+		        -webkit-transform: rotate(-60deg);
+		    }
+    
+		    .hex .corner-1:before,
+		    .hex .corner-2:before {
+		        width: 173px;
+		        height:    173px;
+		      content: '';
+		      position: absolute;
+		      background: inherit;
+		      top:0;
+		      left: 0;
+		      z-index: 1;
+		      background: inherit;
+		      background-repeat:no-repeat;
+		        backface-visibility: hidden;                  
+		    }            
+    
+		    .hex .corner-1:before {
+	        -webkit-transform: rotate(-60deg) translate(-87px, 0px);    
+		      -webkit-transform-origin: 0 0;
+		    }            
+    
+		    .hex .corner-2:before {
+		        -webkit-transform: rotate(60deg) translate(-48px, -11px);    
+		        bottom:0;
+		    }        
+    
+		    /* Custom styles*/
+		    .hex .inner {        
+		        color:#eee;
+		    }
+    
+		    .hex h4 {
+		        font-family: 'Josefin Sans', sans-serif;        
+		        margin:0;            
+		    }
+    
+		    .hex hr {
+		        border:0;
+		        border-top:1px solid #eee;
+		        width:60%;
+		        margin:15px auto;
+		    }
+    
+		    .hex p {
+		        font-size:16px;
+		        font-family: 'Kotta One', serif;
+		        width:80%;
+		        margin:0 auto;
+		    }
+		    .hex.hex-1 {
+		        background: #74cddb;
+		    }
+    
+		    .hex.hex-2 {
+		        background: #f5c53c;
+		    }
+    
+		    .hex.hex-3 {
+		        background: #80b971;
+		    }
+				
+				.spoiler {
+					-webkit-filter: blur(1px);
+					-webkit-transition-property: -webkit-filter;
+					-webkit-transition-duration: .2s;
+				}
+				
+				.spoiler:hover, spoiler:focus {
+					-webkit-filter: blur(0px);
+				}
+				
+				.double-bounce2 {
+				  -webkit-animation-delay: -1.0s;
+				  animation-delay: -1.0s;
+				}
+
+				@-webkit-keyframes bounce {
+				  0%, 100% { -webkit-transform: scale(0.0) }
+				  50% { -webkit-transform: scale(1.0) }
+				}
+
+				@keyframes bounce {
+				  0%, 100% { 
+				    transform: scale(0.0);
+				    -webkit-transform: scale(0.0);
+				  } 50% { 
+				    transform: scale(1.0);
+				    -webkit-transform: scale(1.0);
+				  }
+				}
+		</style>
+		
+		<div class="container well slider-well">
+      <div class="slider slider-horizontal" style="width: 50%; margin-left:25%;">
+				<div class="slider-track">
+					<div class="slider-selection" style="left: 0%; width: 10%;">				
+					</div>
+					<div class="slider-handle round" style="left: 10%;">
+					</div>
+					<div class="slider-handle round hide" style="left: 0%;">
+					</div>
+				</div>
+				<div class="tooltip top" style="top: -40px; left: -33px;">
+					<div class="tooltip-arrow"></div><div class="tooltip-inner">Current value: 2</div>
+				</div>
+			<input type="text" class="span2" value="4" id="sl1" style=""></div>
+    </div>
+		
+		<div class="container container-hex text-center">							
+			<!-- <div class="span9 container-hex" style="display: table-cell;"> -->
+							{% for ii in range(10) %}
+
+								<div id="shelly" class= {% if ii in [0,7] %}
+															"hex hex-gap spoiler" 
+														{% else %}
+															"hex spoiler" 
+														{% endif %} 
+										style= {% if out[ii].get("treatment_type") == 0 %}
+															"background-image: url(static/img/beehiveIcon-blue.png);"
+														{% elif out[ii].get("treatment_type") == 1 %}
+															"background-image: url(static/img/beehiveIcon-orange.png);"
+														{% elif out[ii].get("treatment_type") == 2 %}
+															"background-image: url(static/img/beehiveIcon-green.png);"
+														{% elif out[ii].get("treatment_type")== 3 %}
+														  "background-image: url(static/img/beehiveIcon-gray.png);"
+														{% else %}
+															"background-image: url(static/img/8.jpg);"
+														{% endif %} >	
+									<div class="inner">
+											<h4>{{ out[ii].get("treatment")}}</h4>
+									</div>			
+									<a href="#myModal" role="button" data-toggle="modal"></a>		
+									<div class="corner-1"></div>
+									<div class="corner-2"></div>		
+								</div>
+											
+							{% endfor %}
+	
+			</div>
+			
+			
+
+			<!-- Modal s
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Modal header</h3>
+			  </div>
+			  <div class="modal-body">
+			    <p>One fine body…</p>
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			    <button class="btn btn-primary">Save changes</button>
+			  </div>
+			</div> -->
+
+			<!-- <div class="spinner">
+			  <div class="double-bounce1"></div>
+			  <div class="double-bounce2"></div>
+			</div> -->
+			
+<!-- 			<script>
+			$('.slider').slider()
+			</script> -->
+{% endblock %}

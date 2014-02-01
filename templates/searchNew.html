@@ -1,0 +1,617 @@
+{% extends "layout.html" %}
+{% block content %}
+<script>
+// This is the function that intializes the ...
+$(document).ready(function(){
+                  console.log( "ready!" );
+									var alpha = 0.0;
+									var votes = 530;
+                  recompute(0, alpha, votes);
+									// insertParameters('', '', [{"treatment":'None'}], 0)
+									
+});
+</script>
+
+		<style type="text/css">
+		.hex {
+		    width:150px;
+		    height:86px;
+		    background-color: #ccc;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;            
+		    background-size: auto 173px;                            
+		    position: relative;
+		    float:left;
+		    margin:25px 5px;
+		    text-align:center;
+		    zoom:1;
+		}
+		
+		.hex-result {
+		    width:150px;
+		    height:86px;
+		    background-color: #c47345;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;            
+		    background-size: auto 173px;                            
+		    position: relative;
+		    float:left;
+		    margin:25px 5px;
+		    text-align:center;
+		    zoom:1;
+		}
+		.slider-well {
+			width:500px;
+			border-radius: 15px;
+			position:relative;
+/*			margin-left: 28%;*/
+			margin-top:7%;
+			padding: 6px;
+		}
+		
+		.container-hex {
+			width:700px; 
+			height:750px; 
+			position:relative; 
+			top: 85px; 
+/*			left:50%; */
+/*			margin: 50%;*/
+		}
+        
+		    .hex.hex-gap {
+		        margin-left: 86px;
+		    }
+				.hex-transparent{
+					background-color: transparent;
+				}
+    
+		    .hex a {
+		        display:block;
+		        width: 100%;
+		        height:100%;
+		        position:absolute;
+		        top: 50px;
+		        left: 0;
+		    }
+		    .hex .corner-1,
+		    .hex .corner-2 {
+		        position: absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+		        background: inherit;                                
+		        z-index:-2;                        
+		        overflow:hidden;        
+		        backface-visibility: hidden;            
+		    }
+				
+		    .hex .corner-1-result,
+		    .hex .corner-2-result {
+		        position: absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+/*		        background: inherit; */
+						background-color: #c47345;                               
+		        z-index:-2;                        
+		        overflow:hidden;        
+		        backface-visibility: hidden;            
+		    }
+    
+		    .hex .corner-1 {
+		        z-index:-1;
+		        -webkit-transform: rotate(60deg);
+		    }
+    
+		    .hex .corner-2 {
+		        -webkit-transform: rotate(-60deg);
+		    }
+    
+		    .hex .corner-1:before,
+		    .hex .corner-2:before {
+		        width: 173px;
+		        height:    173px;
+		      content: '';
+		      position: absolute;
+		      background: inherit;
+		      top:0;
+		      left: 0;
+		      z-index: 1;
+		      background: inherit;
+		      background-repeat:no-repeat;
+		        backface-visibility: hidden;                  
+		    }            
+    
+		    .hex .corner-1:before {
+	        -webkit-transform: rotate(-60deg) translate(-87px, 0px);    
+		      -webkit-transform-origin: 0 0;
+		    }            
+    
+		    .hex .corner-2:before {
+		        -webkit-transform: rotate(60deg) translate(-48px, -11px);    
+		        bottom:0;
+		    }        
+    
+		    /* Custom styles*/
+		    .hex .inner {        
+		        color:#eee;
+		    }
+    
+		    .hex h4 {
+		        font-family: 'Josefin Sans', sans-serif;        
+		        margin:0;            
+		    }
+    
+		    .hex hr {
+		        border:0;
+		        border-top:1px solid #eee;
+		        width:60%;
+		        margin:15px auto;
+		    }
+    
+		    .hex p {
+		        font-size:16px;
+		        font-family: 'Kotta One', serif;
+		        width:80%;
+		        margin:0 auto;
+		    }
+		    .hex.hex-1 {
+		        background: #74cddb;
+		    }
+    
+		    .hex.hex-2 {
+		        background: #f5c53c;
+		    }
+    
+		    .hex.hex-3 {
+		        background: #80b971;
+		    }
+				
+				.spoiler {
+					-webkit-filter: blur(0px);
+					-webkit-transition-property: -webkit-filter;
+					-webkit-transition-duration: .2s;
+				}
+				
+				.spoiler:hover, spoiler:focus {
+					-webkit-filter: blur(0px);
+				}
+				
+				.double-bounce2 {
+				  -webkit-animation-delay: -1.0s;
+				  animation-delay: -1.0s;
+				}
+				
+				#simplemodal-container a.modalCloseImg {
+					background:url(static/img/x.png) no-repeat; /* adjust url as required */
+					width:25px;
+					height:29px;
+					display:inline;
+					z-index:3200;
+					position:absolute;
+					top:-15px;
+					right:-18px;
+					cursor:pointer;
+				}
+				
+				#clickthrough {
+					color: white;
+					font-family: 'Convergence', sans-serif;
+					font-size: 20px;
+				}
+				.Lato {
+					font-family: 'Lato', sans-serif;
+					font-style: italic;
+					top:-10px;
+				}
+
+				#slider_header {margin-bottom: 4px}
+				
+				#slider_description{ color: black;}
+				
+				
+				@-webkit-keyframes bounce {
+				  0%, 100% { -webkit-transform: scale(0.0) }
+				  50% { -webkit-transform: scale(1.0) }
+				}
+
+				@keyframes bounce {
+				  0%, 100% { 
+				    transform: scale(0.0);
+				    -webkit-transform: scale(0.0);
+				  } 50% { 
+				    transform: scale(1.0);
+				    -webkit-transform: scale(1.0);
+				  }
+				}
+		</style>
+		
+		<!-- <div class="container well slider-well">
+      <div class="slider slider-horizontal" style="width: 50%; margin-left:25%;">
+				<div class="slider-track">
+					<div class="slider-selection" style="left: 0%; width: 10%;">				
+					</div>
+					<div class="slider-handle round" style="left: 10%;">
+					</div>
+					<div class="slider-handle round hide" style="left: 0%;">
+					</div>
+				</div>
+				<div class="tooltip top" style="top: -40px; left: -33px;">
+					<div class="tooltip-arrow"></div><div class="tooltip-inner">Current value: 2</div>
+				</div>
+			<input type="text" class="span2" value="4" id="sl1" style=""></div>
+    </div> -->
+			<body style="background-image:url('static/img/honeycomb-highres-opacity2.jpg');
+									-webkit-background-size: cover;
+									-moz-background-size: cover;
+									-o-background-size: cover;
+									background-size: cover;
+									">	
+		<div class="container container-hex text-center">							
+			<!-- <div class="span9 container-hex" style="display: table-cell;"> -->
+
+				<!-- First Row of the honeycomb, the middle two of the four actually shows up -->
+				{% for ii in range(4) %}
+				<div {% if ii in [0,3] %}
+				class="hex hex-transparent"
+				{% else %}
+				class="hex"
+				style="background-image: url(static/img/beehiveicon.png);"
+				{% endif %}>
+
+					<div class="inner">
+							<h4></h4>
+					</div>			
+					<a></a>		
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>
+				{% endfor %}
+				
+				<!-- Second Row of the honeycomb, the middle element is the top ranked treatment per user's preference -->
+				<div class="hex hex-gap" style="background-image: url(static/img/beehiveicon.png);">	
+					<div class="inner">
+							<h4></h4>
+					</div>			
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>
+				
+				<div class="hex" style="background-image: url(static/img/hex_coral.png);">	
+					<div class="inner">
+							<!-- <h4 class="Lato" id="">{{ out[0].get("treatment")}}</h4> -->
+							<h4 class "Lato" id="firstTreatment" style="">...</h4>
+							<!-- inserting javascript generated modal ID -->
+							
+							<a id="#" data-target="#firstTarget" data-toggle="modal">
+								info
+							</a>
+						
+							<br>
+							<!-- <h4 id="newnew">...</h4> -->
+					</div>			
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>	
+					
+					<!-- Modal -->
+					<!-- <p id="firstModalID">
+					<div class="modal fade" id="Dark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					</p> -->
+					<div class="modal fade" id="firstTarget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        <h4 class="modal-title" id="myModalLabel">Reported Treatment Effectiveness</h4>
+					      </div>
+					      <div class="modal-body">
+									<p id="firstModalText">
+									</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <!-- <a href="http://www.google.com" class="btn btn-primary">Save changes</a> -->
+				
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+						
+				</div>
+				
+				<div class="hex " style="background-image: url(static/img/beehiveicon.png);">	
+					<div class="inner">
+							<h4></h4>
+					</div>			
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>
+					
+				</div>
+				
+				
+				<!-- Third Row of the honeycomb, the middle two of the four the top ranked treatment per user's preference -->
+				{% for ii in range(4) %}
+				
+				{% if ii in [0, 3] %}
+				<div class="hex spoiler" 
+				style="background-image: url(static/img/beehiveicon.png);">
+				
+					<div class="inner">
+							<h4></h4>
+					</div>			
+					<a></a>		
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>
+				{% else %}
+				<div class="hex" style="background-image: url(static/img/hex_coral.png);">	
+					<div class="inner">
+							<!-- <h4 class="Lato" id="">{{ out[0].get("treatment")}}</h4> -->
+							<h4 class "Lato" 
+							id={% if ii == 1 %}
+							"secondTreatment"
+							{% else %}
+							"thirdTreatment"
+							{% endif%}></h4>
+							
+							<a id="#" data-target={% if ii == 1 %}"#secondModal"{% else %}"#thirdModal"{% endif %} data-toggle="modal">
+								info</a>
+						
+							<br>
+							<!-- <h4 id="newnew">...</h4> -->
+					</div>			
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>	
+					
+					<!-- Modal -->
+					<!-- <p id={% if ii == 1 %}
+					"secondModalID"
+					{% else %}
+					"thirdModalID"
+					{% endif %}>
+					<div class="modal fade" id="{{ out[ii].get('treatment').split()[0] }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					</p> -->
+					<div class="modal fade" id={% if ii == 1 %}"secondModal"{% else %}"thirdModal"{% endif %} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">					
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        <h4 class="modal-title" id="myModalLabel">Reported Treatment Effectiveness</h4>
+					      </div>
+					      <div class="modal-body">
+									<p id={% if ii == 1 %}"secondModalText"{% else %}"thirdModalText"{% endif %}>
+									</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        <!-- <a href="http://www.google.com" class="btn btn-primary">Save changes</a> -->
+				
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+						
+				</div>
+				{% endif %}
+				{% endfor %}
+				
+				<!-- Fourth Row of the honeycomb -->
+				{% for ii in range(3) %}
+				
+				<div class=
+				{% if ii == 0 %}
+				"hex hex-gap spoiler" 
+				{% else %}
+				"hex spoiler"
+				{% endif %}
+				style="background-image: url(static/img/beehiveicon.png);">	
+					<div class="inner">
+							<h4></h4>
+					</div>			
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>				
+				{% endfor %}
+			</div>	
+			
+			<div class="row">
+			  <div class="span8"> 
+					<div class="container">
+					<div class="sliderbox">
+						<div class ="label" id="slider_description" style="color:white;">Benchmark Threshold</div>
+						<input class="slider slider-horizontal" id="slider_votes" data-slider-tooltip="hide" value=10 data-slider-value=10>
+					</div>
+				</div>
+				
+			  <div class="span8"> 
+					<div class="container">
+					<div class="sliderbox">
+						<div class ="label" id="slider_description" style="color:white;">Popularity</div>
+						<input class="slider slider-horizontal" id="slider_alpha" data-slider-tooltip="hide" value=10 data-slider-value=10>
+					</div>
+				</div>
+			</div>
+			
+			<!-- <p id="connections" style="font-size:100px; text-align: center;"></p>
+			<p style="font-size:100px; text-align: center;">{{ cond }}</p> -->
+			<!-- {% for item in jsonstr %}
+			<a>{{ item.get("treatment") }}</a>
+			{% endfor %}			 -->
+			</body>
+<script>
+$(function() {
+	$( "#slider_votes" ).slider({
+	orientation: "horizontal",
+	range: "min",
+	min: 0,
+	max: 1000,
+	step: 20,
+	value: 1,
+	// slide: function( event, ui) { normfunction() }
+	});
+});
+
+$(function() {
+	$( "#slider_alpha" ).slider({
+	orientation: "horizontal",
+	range: "min",
+	min: 0,
+	max: 1,
+	step: 0.1,
+	value: 0.,
+	slide: function( event, ui) { normfunction() }
+	});
+});
+
+function initialize() {
+	var votes = $('#slider_votes').val();
+	var alpha = $('#slider_alpha').val();
+	recompute();
+};
+
+function recompute(ev, alpha, votes) {
+	if (ev)
+	{ 
+		//do something cool
+	};
+	var cond = "{{ cond }}";
+	// console.log(cond);
+  $.getJSON('/search_get',{alpha:alpha, votes:votes, cond:cond }, function(jsresult) {
+		result = eval(jsresult);
+		// console.log(typeof result);  
+		var LIST = [0, 1, 2]	
+		for(var i = 0; i < LIST.length; i++) {
+			LIST[i] = result.out[i];
+		};
+		insertParameters(result.alpha, result.votes, LIST);		
+		});
+};
+
+// initialize();
+
+// function renderParameters(data_alpha, data_votes, data_out, ind) {
+//     html = ''
+// 		var alpha = data_alpha;
+// 		var votes = data_votes;
+// 		var out = data_out;
+// 		var ind = ind;
+// 		
+// 		alpha = alpha.toString();
+// 		votes = votes.toString();
+// 		
+// 		html += '<a style="top:0px; color: teal;">' +out[ind].treatment+ '</a>'
+//     return $(html)
+// }
+function renderTreatments(data_alpha, data_votes, data_out, ind) {
+		var alpha = data_alpha;
+		var votes = data_votes;
+		var out = data_out;
+		var ind = ind;
+				
+		html = ''
+		html += '<a href="' +out[ind].url+ '" target="_blank" style="position: absolute; top:20%; color: white; font-size:26px;">' +out[ind].treatment+ '</a>'
+		// console.log(html)
+    return $(html)
+}
+
+function renderModalText(data_alpha, data_votes, data_out, ind) {
+		var alpha = data_alpha;
+		var votes = data_votes;
+		var out = data_out;
+		var ind = ind;
+		var star5 = ( Number(out[ind].major_improvement) ) / Number(out[ind].sum);
+		var star4 = ( Number(out[ind].moderate_improvement) ) / Number(out[ind].sum);
+		var star3 = ( Number(out[ind].no_effect) ) / Number(out[ind].sum);
+		var star2 = ( Number(out[ind].slightly_worse) ) / Number(out[ind].sum);
+		var star1 = ( Number(out[ind].much_worse) ) / Number(out[ind].sum);
+		
+		star5 = (100 * star5).toFixed(2);
+		star4 = (100 * star4).toFixed(2);
+		star3 = (100 * star3).toFixed(2);
+		star2 = (100 * star2).toFixed(2);
+		star1 = (100 * star1).toFixed(2);
+		
+		star5 = 'major improvement: ' +star5.toString();
+		star4 = 'moderate improvement: ' +star4.toString();
+		star3 = 'no effect: ' +star3.toString();
+		star2 = 'slightly worse: ' +star2.toString();
+		star1 = 'much worse: ' +star1.toString();
+			
+		html = ''
+		html += '<h4 style="text-align: left;">' +star5+ '%</h4>'
+		html += '<h4 style="text-align: left;">' +star4+ '%</h4>'
+		html += '<h4 style="text-align: left;">' +star3+ '%</h4>'
+		html += '<h4 style="text-align: left;">' +star2+ '%</h4>'
+		html += '<h4 style="text-align: left;">' +star1+ '%</h4>'
+		
+		// console.log(html)
+		// console.log(html)
+    return $(html)
+}
+
+function renderModalIDs(data_alpha, data_votes, data_out, ind) {
+		var alpha = data_alpha;
+		var votes = data_votes;
+		var out = data_out;
+		var ind = ind;
+			
+		html = ''
+		var HTMLstring = out[ind].treatment.split(' ')[0]
+		// console.log(HTMLstring);
+		html += '<div class="modal fade" id="Dark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+		// console.log(html)
+    return $(html)
+}
+
+function insertParameters(data_alpha, data_votes, data_out){
+    //console.log(data[0][0]);
+    // $('#connections').html(renderParameters(data_alpha, data_votes, data_out))
+		// $('#newnew').html(renderParameters(data_alpha, data_votes))
+		// $('#firstTreatment').html(renderParameters(data_alpha, data_votes, data_out, 0))
+		// $('#secondTreatment').html(renderParameters(data_alpha, data_votes, data_out, 1))
+		// $('#thirdTreatment').html(renderParameters(data_alpha, data_votes, data_out, 2))
+		$('#firstTreatment').html(renderTreatments(data_alpha, data_votes, data_out, 0))
+		$('#secondTreatment').html(renderTreatments(data_alpha, data_votes, data_out, 1))
+		$('#thirdTreatment').html(renderTreatments(data_alpha, data_votes, data_out, 2))
+		
+		$('#firstModalText').html(renderModalText(data_alpha, data_votes, data_out, 0))		
+		$('#secondModalText').html(renderModalText(data_alpha, data_votes, data_out, 1))		
+		$('#thirdModalText').html(renderModalText(data_alpha, data_votes, data_out, 2))		
+		
+		// $('#firstModalID').html(renderModalIDs(data_alpha, data_votes, data_out, 0))
+		// $('#secondModalID').html(renderModalIDs(data_alpha, data_votes, data_out, 1))
+		// $('#thirdModalID').html(renderModalIDs(data_alpha, data_votes, data_out, 2))
+}
+
+
+$('#slider_votes').slider().on('slideStop', function(ev){
+	var alpha = $('#slider_alpha').val()
+	var votes = $('#slider_votes').val()
+	console.log('javascript: alpha = ' +alpha+ ', votes = ' +votes)
+	
+	recompute(ev, alpha, votes);
+})	
+// $('#slider_price').slider().on('slideStop', function(ev){
+	// recompute(ev);
+// })
+$('#slider_alpha').slider().on('slideStop', function(ev){
+	var alpha = $('#slider_alpha').val()
+	var votes = $('#slider_votes').val()
+	console.log('alpha = ' +alpha+ ', votes = ' +votes)
+	
+	recompute(ev, alpha, votes);
+})	
+
+$(document).ready(function() {
+   $("#MyModal").modal();
+ });
+
+  $(function (){
+  $('[data-toggle="modal"]')
+  .popover({trigger: 'click', html: 'true', placement: "bottom"})
+  .click(function(e) {e.preventDefault();});
+  });
+  </script>
+{% endblock %}

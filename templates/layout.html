@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BeeHealthy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<link rel="shortcut icon" href="static/img/bee_transparent.ico">
+    <!-- Le styles -->
+		<link href="static/css/starter-template.css" rel="stylesheet">
+    <link href="static/css/bootstrap_232.css" rel="stylesheet">
+		
+		<link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+			
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+		<!-- <link href="static/css/slider.css" rel="stylesheet"> -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+		
+		<!-- // <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/typeahead.min.js"></script>
+		<!-- // <script src="static/js/typeahead.min.js"></script> -->
+		<link rel='stylesheet' href='http://twitter.github.com/typeahead.js/releases/latest/typeahead.css' />
+		<script src="static/js/bootstrap-slider.js"></script> 
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		
+		<link href="static/css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="static/css/slider.css" rel="stylesheet">		
+		
+		<!-- // <script src="static/js/jquery.min.js"></script> -->
+		
+		<script>
+		// This is the function that intializes the ...
+		$(document).ready(function(){
+			  console.log( "ready!" );
+				var alpha = 10.0;
+				var votes = 530;
+			  recompute(0, alpha, votes);
+				// insertParameters('', '', [{"treatment":'None'}], 0)									
+		});
+		</script>
+		<link href="static/css/jang.css" rel="stylesheet">
+
+  </head>
+
+  <body style="background-image:url('static/img/honeycomb-highres.png');
+						-webkit-background-size: cover;
+						-moz-background-size: cover;
+						-o-background-size: cover;
+						background-size: cover;">	
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/" id="brand">BeeHealthy</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right" style="margin-top:15px;">
+              <a href="slides" class="navbar-link">Slides</a>
+            </p>
+            <ul class="nav">
+              <li class="active" style="font-size: 20px; line-height: 20px;"><a href="#">Home</a></li>
+              <li><a style="font-size: 20px;" href="http://www.shellyjang.com" target="_blank" class="navbar-link">Shelly</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+		{% block content %} {% endblock %}
+		
+		
+		
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+		<!-- //     <script src="static/js/components/jquery.js"></script>
+		//     <script src="static/js/components/bootstrap-transition.js"></script>
+		//     <script src="static/js/components/bootstrap-alert.js"></script>
+		//  	  <script src="static/js/components/bootstrap-modal.js"></script>
+		// <script src="static/js/components/bootstrap-dropdown.js"></script>
+		//     <script src="static/js/components/bootstrap-scrollspy.js"></script>
+		//     <script src="static/js/components/bootstrap-tab.js"></script>
+		//     <script src="static/js/components/bootstrap-tooltip.js"></script>
+		//     <script src="static/js/components/bootstrap-popover.js"></script>
+		//     <script src="static/js/components/bootstrap-button.js"></script>
+		//     <script src="static/js/components/bootstrap-collapse.js"></script>
+		//     <script src="static/js/components/bootstrap-carousel.js"></script>
+		//     <script src="static/js/components/bootstrap-typeahead.js"></script> -->
+
+  </body>
+</html>

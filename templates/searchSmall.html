@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+{% block content %}
+		<style type="text/css">
+		.hex {
+		    width:75px;
+		    height:43px;
+		    background-color: #ccc;
+		    background-repeat: no-repeat;
+		    background-position: 50% 50%;            
+		    background-size: auto 86px;                            
+		    position: relative;
+		    float:left;
+		    margin:15px 5px;
+		    text-align:center;
+		    zoom:1;
+		}
+        
+		    .hex.hex-gap {
+		        margin-left: 43px;
+		    }
+    
+		    .hex a {
+		        display:block;
+		        width: 100%;
+		        height:100%;
+		        text-indent:-9999em;
+		        position:absolute;
+		        top:0;
+		        left:0;
+		    }
+		    .hex .corner-1,
+		    .hex .corner-2 {
+		        position: absolute;
+		        top:0;
+		        left:0;
+		        width:100%;
+		        height:100%;
+		        background: inherit;                                
+		        z-index:-2;                        
+		        overflow:hidden;        
+		        backface-visibility: hidden;            
+		    }
+    
+		    .hex .corner-1 {
+		        z-index:-1;
+		        -webkit-transform: rotate(60deg);
+		    }
+    
+		    .hex .corner-2 {
+		        -webkit-transform: rotate(-60deg);
+		    }
+    
+		    .hex .corner-1:before,
+		    .hex .corner-2:before {
+		        width: 86px;
+		        height:    86px;
+		      content: '';
+		      position: absolute;
+		      background: inherit;
+		      top:0;
+		      left: 0;
+		      z-index: 1;
+		      background: inherit;
+		      background-repeat:no-repeat;
+		        backface-visibility: hidden;                  
+		    }            
+    
+		    .hex .corner-1:before {
+	        -webkit-transform: rotate(-60deg) translate(-43px, 0px);    
+		      -webkit-transform-origin: 0 0;
+		    }            
+    
+		    .hex .corner-2:before {
+		        -webkit-transform: rotate(60deg) translate(-24px, -5px);    
+		        bottom:0;
+		    }        
+    
+		    /* Custom styles*/
+		    .hex .inner {        
+		        color:#eee;
+		    }
+    
+		    .hex h4 {
+		        font-family: 'Josefin Sans', sans-serif; 
+						font-size: 8px;       
+		        margin:0;            
+		    }
+    
+		    .hex hr {
+		        border:0;
+		        border-top:1px solid #eee;
+		        width:60%;
+		        margin:5px auto;
+		    }
+    
+		    .hex p {
+		        font-size:8px;
+		        font-family: 'Kotta One', serif;
+		        width:80%;
+		        margin:0 auto;
+		    }
+		    .hex.hex-1 {
+		        background: #74cddb;
+		    }
+    
+		    .hex.hex-2 {
+		        background: #f5c53c;
+		    }
+    
+		    .hex.hex-3 {
+		        background: #80b971;
+		    }
+		</style>
+
+
+
+		<!-- <div class="hex hex-3">        
+		    <div class="inner">
+		            <h4>CONTACT US</h4>
+		            <hr />
+		            <p>We Open Everyday</p>
+		    </div>        
+		    <a href="#"></a>
+		    <div class="corner-1"></div>
+		    <div class="corner-2"></div>        
+		</div>    
+		<div class="hex" style="background-image: url(static/img/2.jpg);">        
+		    <a href="#"></a>        
+		    <div class="corner-1"></div>
+		    <div class="corner-2"></div>        
+		</div>		 -->					
+
+			<body style="color: yellow;">
+	
+		<div class="container-hex" 
+			style="width:700px;
+						height:100%;
+						position:relative;
+						top:50px;
+						left:50%;
+						margin-left:-350px;">
+				
+						<div class="hex hex-1">		
+								<div class="inner">
+										<h4>HOME</h4>
+										<hr />
+										<p>Home Sweet Home</p>
+								</div>		
+								<a href="#"></a>
+								<div class="corner-1"></div>
+								<div class="corner-2"></div>		
+							</div>
+	
+					<div class="hex hex-2">		
+						<div class="inner">
+								<h4>ABOUT US</h4>
+								<hr />
+								<p>We Are The Experts</p>
+						</div>		
+						<a href="#"></a>
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+
+					<div class="hex hex-3">		
+						<div class="inner">
+								<h4>CONTACT US</h4>
+								<hr />
+								<p>We Open Everyday</p>
+						</div>		
+						<a href="#"></a>
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>	
+
+					<div class="hex" style="background-image: url(static/img/2.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/3.jpg);">		
+						<a href="#"></a>
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/4.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/5.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex hex-gap" style="background-image: url(static/img/6.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/7.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/8.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>	
+
+					<div class="hex" style="background-image: url(static/img/9.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/10.jpg);">		
+						<a href="#"></a>	
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>	
+
+					<div class="hex" style="background-image: url(static/img/11.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+
+					<div class="hex" style="background-image: url(static/img/12.jpg);">		
+						<a href="#"></a>		
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>		
+					</div>
+	
+				<!-- <div class="hex hex-gap" style="background-image: url(static/img/13.jpg);">		
+					<a href="#"></a>		
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>
+	
+				<div class="hex" style="background-image: url(static/img/14.jpg);">		
+					<a href="#"></a>		
+					<div class="corner-1"></div>
+					<div class="corner-2"></div>		
+				</div>	 -->
+			</div>
+		</body>
+{% endblock %}

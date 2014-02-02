@@ -47,22 +47,34 @@ function recompute(ev, alpha, votes) {
 		});
 };
 
-// initialize();
-
-// function renderParameters(data_alpha, data_votes, data_out, ind) {
-//     html = ''
-// 		var alpha = data_alpha;
-// 		var votes = data_votes;
-// 		var out = data_out;
-// 		var ind = ind;
-// 		
-// 		alpha = alpha.toString();
-// 		votes = votes.toString();
-// 		
-// 		html += '<a style="top:0px; color: teal;">' +out[ind].treatment+ '</a>'
-//     return $(html)
-// }
 function renderTreatments(data_alpha, data_votes, data_out, ind) {
+		var alpha = data_alpha;
+		var votes = data_votes;
+		var out = data_out;
+		var ind = ind;
+				
+		html = ''
+		if (out[ind].treatment_type == 1) {
+			html += '<a href="' +out[ind].url+ '" target="_blank" style="position: absolute; top:20%; color: white; font-size:26px;">' +out[ind].treatment+ '</a>'
+			html += '<img src="static/img/consumable_icon.png">'
+		}
+		else if (out[ind].treatment_type == 2) {
+			html +='<a href="' +out[ind].url+ '" target="_blank" style="position: absolute; top:20%; color: white; font-size:26px;">' +out[ind].treatment+ '</a>'
+			html += '<img src="static/img/exercise_icon.png">'
+		}
+		else if (out[ind].treatment_type == 3) {
+			html +='<a href="' +out[ind].url+ '" target="_blank" style="position: absolute; top:20%; color: white; font-size:26px;">' +out[ind].treatment+ '</a>'
+			html += '<img src="static/img/doctor_icon.png">'
+		}
+		else {
+			html = html +='<a style="position: absolute; top:20%; color: white; font-size:26px;">' +out[ind].treatment+ '</a>'
+			
+		}
+		// console.log(html)
+    return $(html)
+};
+
+function renderIcon(data_alpha, data_votes, data_out, ind) {
 		var alpha = data_alpha;
 		var votes = data_votes;
 		var out = data_out;
@@ -109,54 +121,6 @@ function renderModalText(data_alpha, data_votes, data_out, ind) {
     return $(html)
 };
 
-// function renderHoverText(data_alpha, data_votes, data_out, ind) {
-// 		var alpha = data_alpha;
-// 		var votes = data_votes;
-// 		var out = data_out;
-// 		var ind = ind;
-// 		var star5 = ( Number(out[ind].major_improvement) ) / Number(out[ind].sum);
-// 		var star4 = ( Number(out[ind].moderate_improvement) ) / Number(out[ind].sum);
-// 		var star3 = ( Number(out[ind].no_effect) ) / Number(out[ind].sum);
-// 		var star2 = ( Number(out[ind].slightly_worse) ) / Number(out[ind].sum);
-// 		var star1 = ( Number(out[ind].much_worse) ) / Number(out[ind].sum);
-// 		
-// 		star5 = (100 * star5).toFixed(2);
-// 		star4 = (100 * star4).toFixed(2);
-// 		star3 = (100 * star3).toFixed(2);
-// 		star2 = (100 * star2).toFixed(2);
-// 		star1 = (100 * star1).toFixed(2);
-// 		
-// 		star5 = 'major improvement: ' +star5.toString();
-// 		star4 = 'moderate improvement: ' +star4.toString();
-// 		star3 = 'no effect: ' +star3.toString();
-// 		star2 = 'slightly worse: ' +star2.toString();
-// 		star1 = 'much worse: ' +star1.toString();
-// 			
-// 		html = ''
-// 		html += '<h4 style="text-align: left;">' +star5+ '%</h4>'
-// 		html += '<h4 style="text-align: left;">' +star4+ '%</h4>'
-// 		html += '<h4 style="text-align: left;">' +star3+ '%</h4>'
-// 		html += '<h4 style="text-align: left;">' +star2+ '%</h4>'
-// 		html += '<h4 style="text-align: left;">' +star1+ '%</h4>'
-// 		
-// 		// console.log(html)
-// 		// console.log(html)
-//     return $(html)
-// };
-
-function renderModalIDs(data_alpha, data_votes, data_out, ind) {
-		var alpha = data_alpha;
-		var votes = data_votes;
-		var out = data_out;
-		var ind = ind;
-			
-		html = ''
-		var HTMLstring = out[ind].treatment.split(' ')[0]
-		// console.log(HTMLstring);
-		html += '<div class="modal fade" id="Dark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
-		// console.log(html)
-    return $(html)
-};
 
 function insertParameters(data_alpha, data_votes, data_out){
     //console.log(data[0][0]);
@@ -169,9 +133,9 @@ function insertParameters(data_alpha, data_votes, data_out){
 		$('#secondTreatment').html(renderTreatments(data_alpha, data_votes, data_out, 1))
 		$('#thirdTreatment').html(renderTreatments(data_alpha, data_votes, data_out, 2))
 		
-		$('#firstModalText').html(renderModalText(data_alpha, data_votes, data_out, 0))		
-		$('#secondModalText').html(renderModalText(data_alpha, data_votes, data_out, 1))		
-		$('#thirdModalText').html(renderModalText(data_alpha, data_votes, data_out, 2))		
+		// $('#firstModalText').html(renderModalText(data_alpha, data_votes, data_out, 0))		
+		// $('#secondModalText').html(renderModalText(data_alpha, data_votes, data_out, 1))		
+		// $('#thirdModalText').html(renderModalText(data_alpha, data_votes, data_out, 2))		
 		
 		// $('#firstModalID').html(renderModalIDs(data_alpha, data_votes, data_out, 0))
 		// $('#secondModalID').html(renderModalIDs(data_alpha, data_votes, data_out, 1))
@@ -275,3 +239,55 @@ $(function (){
   .popover({trigger: 'click', html: 'true', placement: "bottom"})
   .click(function(e) {e.preventDefault();});
 });
+
+
+
+
+// function renderHoverText(data_alpha, data_votes, data_out, ind) {
+// 		var alpha = data_alpha;
+// 		var votes = data_votes;
+// 		var out = data_out;
+// 		var ind = ind;
+// 		var star5 = ( Number(out[ind].major_improvement) ) / Number(out[ind].sum);
+// 		var star4 = ( Number(out[ind].moderate_improvement) ) / Number(out[ind].sum);
+// 		var star3 = ( Number(out[ind].no_effect) ) / Number(out[ind].sum);
+// 		var star2 = ( Number(out[ind].slightly_worse) ) / Number(out[ind].sum);
+// 		var star1 = ( Number(out[ind].much_worse) ) / Number(out[ind].sum);
+// 		
+// 		star5 = (100 * star5).toFixed(2);
+// 		star4 = (100 * star4).toFixed(2);
+// 		star3 = (100 * star3).toFixed(2);
+// 		star2 = (100 * star2).toFixed(2);
+// 		star1 = (100 * star1).toFixed(2);
+// 		
+// 		star5 = 'major improvement: ' +star5.toString();
+// 		star4 = 'moderate improvement: ' +star4.toString();
+// 		star3 = 'no effect: ' +star3.toString();
+// 		star2 = 'slightly worse: ' +star2.toString();
+// 		star1 = 'much worse: ' +star1.toString();
+// 			
+// 		html = ''
+// 		html += '<h4 style="text-align: left;">' +star5+ '%</h4>'
+// 		html += '<h4 style="text-align: left;">' +star4+ '%</h4>'
+// 		html += '<h4 style="text-align: left;">' +star3+ '%</h4>'
+// 		html += '<h4 style="text-align: left;">' +star2+ '%</h4>'
+// 		html += '<h4 style="text-align: left;">' +star1+ '%</h4>'
+// 		
+// 		// console.log(html)
+// 		// console.log(html)
+//     return $(html)
+// };
+
+// function renderModalIDs(data_alpha, data_votes, data_out, ind) {
+// 		var alpha = data_alpha;
+// 		var votes = data_votes;
+// 		var out = data_out;
+// 		var ind = ind;
+			
+// 		html = ''
+// 		var HTMLstring = out[ind].treatment.split(' ')[0]
+// 		// console.log(HTMLstring);
+// 		html += '<div class="modal fade" id="Dark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+// 		// console.log(html)
+//     return $(html)
+// };
